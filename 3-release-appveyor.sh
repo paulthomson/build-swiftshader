@@ -14,7 +14,7 @@ INSTALL_DIR="${PROFILE}-${Platform}-${CMAKE_BUILD_TYPE}-build"
 COMMIT_ID="${APPVEYOR_REPO_COMMIT}"
 
 pushd "${INSTALL_DIR}/${Configuration}"
-7z a "../../${INSTALL_DIR}.zip" !(*.lib)
+7z a "../../${INSTALL_DIR}.zip" !(llvm.lib)
 popd
 
 github-release \
