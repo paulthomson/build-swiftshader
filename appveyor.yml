@@ -1,7 +1,7 @@
 
 version: 1.0.{branch}-{build}
 
-image: Visual Studio 2015
+image: Visual Studio 2017
 
 clone_depth: 5
 
@@ -17,8 +17,8 @@ platform:
 
 environment:
   matrix:
-   - PROFILE: MSVC2015
-     CMAKE_GENERATOR: "Visual Studio 14 2015 Win64"
+   - PROFILE: MSVC2017
+     CMAKE_GENERATOR: "Visual Studio 15 2017 Win64"
      CMAKE_OPTIONS: " "
 
 install:
