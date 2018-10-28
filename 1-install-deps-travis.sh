@@ -6,13 +6,13 @@ set -u
 sudo mkdir -p /data/bin
 sudo chmod uga+rwx /data/bin
 
-GITHUB_RELEASE_TOOL_USER="paulthomson"
-GITHUB_RELEASE_TOOL_VERSION="v1.0.9.1"
+GITHUB_RELEASE_TOOL_USER="c4milo"
+GITHUB_RELEASE_TOOL_VERSION="v1.1.0"
 
 
 if [ "$(uname)" == "Darwin" ];
 then
-  brew install ninja
+  brew install ninja md5sha1sum
   GITHUB_RELEASE_TOOL_ARCH="darwin_amd64"
 fi
 
@@ -29,7 +29,7 @@ tar xf "github-release_${GITHUB_RELEASE_TOOL_VERSION}_${GITHUB_RELEASE_TOOL_ARCH
 popd
 
 git clone https://github.com/google/swiftshader.git
-cd swiftshader
+cd "${CLONE_DIR}"
 git checkout $(cat ../COMMIT_ID)
 git submodule init
 git submodule update
