@@ -5,7 +5,7 @@ set -u
 
 cd "${CLONE_DIR}"
 
-for f in "${INSTALL_DIR}/bin/"* "${INSTALL_DIR}/lib/"*; do
+for f in "${INSTALL_DIR}/lib/"*; do
   echo "${COMMIT_ID}">"${f}.build-version"
   cp ../COMMIT_ID "${f}.version"
 done
