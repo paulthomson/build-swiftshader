@@ -28,7 +28,7 @@ wget "https://github.com/${GITHUB_RELEASE_TOOL_USER}/github-release/releases/dow
 tar xf "github-release_${GITHUB_RELEASE_TOOL_VERSION}_${GITHUB_RELEASE_TOOL_ARCH}.tar.gz"
 popd
 
-git clone https://github.com/google/swiftshader.git
+git clone https://github.com/paulthomson/swiftshader.git
 cd "${CLONE_DIR}"
 git checkout $(cat ../COMMIT_ID)
 git submodule init
