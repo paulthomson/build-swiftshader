@@ -17,7 +17,7 @@ curl -fsSL -o github-release.tar.gz "https://github.com/${GITHUB_RELEASE_TOOL_US
 cd ..
 
 
-git clone https://github.com/google/paulthomson.git
+git clone https://github.com/paulthomson/build-swiftshader.git
 cd "${CLONE_DIR}"
 git checkout $(cat ../COMMIT_ID)
 git submodule init
