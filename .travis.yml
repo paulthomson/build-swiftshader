@@ -7,11 +7,11 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Debug"
+      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Debug" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
     - os: linux
       dist: trusty
       sudo: required
-      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Release"
+      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Release" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
     - os: osx
       osx_image: xcode8.3
       env: BUILD_PLATFORM="Mac_x64" CMAKE_BUILD_TYPE="Debug"
@@ -30,7 +30,7 @@ install:
   - export CLONE_DIR="swiftshader"
   - export PATH="/data/bin:$PATH"
   - export CMAKE_GENERATOR="Ninja"
-  - export CMAKE_OPTIONS="-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_VULKAN=OFF -DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
+  - export CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_VULKAN=OFF"
   - export GITHUB_USER="paulthomson"
   - export GITHUB_REPO="build-swiftshader"
   - export COMMIT_ID="${TRAVIS_COMMIT}"
