@@ -14,11 +14,11 @@ cmake --build . --config "${CMAKE_BUILD_TYPE}"
 cmake "-DCMAKE_INSTALL_PREFIX=../${INSTALL_DIR}" "-DBUILD_TYPE=${CMAKE_BUILD_TYPE}" -P cmake_install.cmake
 cd ..
 
-find "${BUILD_DIR}"
-
 # SwiftShader doesn't install anything, so copy files manually.
 
 mkdir -p "${INSTALL_DIR}/lib"
 
-cp "${BUILD_DIR}/${CMAKE_BUILD_TYPE}/libEGL"* "${INSTALL_DIR}/lib/"
-cp "${BUILD_DIR}/${CMAKE_BUILD_TYPE}/libGLES"* "${INSTALL_DIR}/lib/"
+cp "${BUILD_DIR}/libEGL"* "${INSTALL_DIR}/lib/"
+cp "${BUILD_DIR}/libGLES"* "${INSTALL_DIR}/lib/"
+
+find "${INSTALL_DIR}"
