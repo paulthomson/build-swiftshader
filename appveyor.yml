@@ -21,12 +21,12 @@ environment:
      CMAKE_OPTIONS: "-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_GL32=OFF -DBUILD_VULKAN=OFF"
 
 install:
-  - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - set "CLONE_DIR=swiftshader"
   - set "PATH=%APPVEYOR_BUILD_FOLDER%\temp;%PATH%"
   - '"C:\Program Files\Git\bin\sh.exe" --login 1-install-deps-appveyor.sh'
   - refreshenv
+  - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - set "CLONE_DIR=swiftshader"
   - set "PATH=%APPVEYOR_BUILD_FOLDER%\temp;%PATH%"
   - set "GITHUB_USER=paulthomson"
@@ -43,8 +43,6 @@ install:
   - set "INSTALL_DIR=%ARTIFACT%-%VERSION%-%CLASSIFIER%"
 
 build_script:
-  - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - '"C:\Program Files\Git\bin\sh.exe" --login 2-build-appveyor.sh'
 
 on_success:
