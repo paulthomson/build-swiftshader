@@ -17,14 +17,16 @@ platform:
 environment:
   matrix:
    - PROFILE: MSVC2015
-     CMAKE_GENERATOR: "Visual Studio 14 2015 Win64"
-     CMAKE_OPTIONS: "-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_GL32=OFF"
+     CMAKE_GENERATOR: "Ninja"
+     CMAKE_OPTIONS: "-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_GL32=OFF -DBUILD_VULKAN=OFF"
 
 install:
   - set "CLONE_DIR=swiftshader"
   - set "PATH=%APPVEYOR_BUILD_FOLDER%\temp;%PATH%"
   - '"C:\Program Files\Git\bin\sh.exe" --login 1-install-deps-appveyor.sh'
   - refreshenv
+  - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - set "CLONE_DIR=swiftshader"
   - set "PATH=%APPVEYOR_BUILD_FOLDER%\temp;%PATH%"
   - set "GITHUB_USER=paulthomson"

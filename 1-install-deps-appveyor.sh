@@ -14,6 +14,10 @@ curl -fsSL -o github-release.tar.gz "https://github.com/${GITHUB_RELEASE_TOOL_US
 
 7z x github-release.tar.gz
 7z x github-release.tar
+
+curl -fsSL -o ninja-win.zip https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-win.zip
+7z x ninja-win.zip
+
 cd ..
 
 

@@ -10,15 +10,17 @@ BUILD_DIR="${INSTALL_DIR}-build"
 mkdir -p "${BUILD_DIR}"
 cd "${BUILD_DIR}"
 cmake -G "${CMAKE_GENERATOR}" .. "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" -DCMAKE_OSX_ARCHITECTURES=x86_64 ${CMAKE_OPTIONS}
-cmake --build . --config "${CMAKE_BUILD_TYPE}"
+cmake --build . --config "${CMAKE_BUILD_TYPE}" --target libEGL
+cmake --build . --config "${CMAKE_BUILD_TYPE}" --target libGLESv2
+cmake --build . --config "${CMAKE_BUILD_TYPE}" --target libGLES_CM
 cmake "-DCMAKE_INSTALL_PREFIX=../${INSTALL_DIR}" "-DBUILD_TYPE=${CMAKE_BUILD_TYPE}" -P cmake_install.cmake
 cd ..
-
-find "${BUILD_DIR}"
 
 # SwiftShader doesn't install anything, so copy files manually.
 
 mkdir -p "${INSTALL_DIR}/lib"
 
-cp "${BUILD_DIR}/${CMAKE_BUILD_TYPE}/libEGL"* "${INSTALL_DIR}/lib/"
-cp "${BUILD_DIR}/${CMAKE_BUILD_TYPE}/libGLES"* "${INSTALL_DIR}/lib/"
+cp "${BUILD_DIR}/libEGL"* "${INSTALL_DIR}/lib/"
+cp "${BUILD_DIR}/libGLES"* "${INSTALL_DIR}/lib/"
+
+find "${INSTALL_DIR}"
