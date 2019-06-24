@@ -18,7 +18,10 @@ cd ..
 
 mkdir -p "${INSTALL_DIR}/lib"
 
-cp "${BUILD_DIR}/libEGL"* "${INSTALL_DIR}/lib/"
-cp "${BUILD_DIR}/libGLES"* "${INSTALL_DIR}/lib/"
+# Cannot use "uname -s", as this gives MINGW64_NT-10.0 on Git Bash shell.
+OUTPUT_SYSTEM="Windows"
+
+# Copy the contents of the output directory into lib.
+cp -r "${BUILD_DIR}/${OUTPUT_SYSTEM}/." "${INSTALL_DIR}/lib/"
 
 find "${INSTALL_DIR}"
