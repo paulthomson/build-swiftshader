@@ -30,7 +30,7 @@ install:
   - export CLONE_DIR="swiftshader"
   - export PATH="/data/bin:$PATH"
   - export CMAKE_GENERATOR="Ninja"
-  - export CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_VULKAN=OFF"
+  - export CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF"
   - export GITHUB_USER="paulthomson"
   - export GITHUB_REPO="build-swiftshader"
   - export COMMIT_ID="${TRAVIS_COMMIT}"
