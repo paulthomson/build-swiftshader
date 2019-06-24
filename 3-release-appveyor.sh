@@ -21,6 +21,19 @@ sha1sum "${POM_FILE}" >"${POM_FILE}.sha1"
 
 DESCRIPTION="$(echo -e "Automated build.\n$(git log --graph -n 3 --abbrev-commit --pretty='format:%h - %s <%an>')")"
 
+# Only release from master branch commits.
+if [ "$APPVEYOR_REPO_BRANCH" != "master" ]; then
+  exit 0
+fi
+
+if [ "$APPVEYOR_REPO_TAG" == "true" ]; then
+  exit 0
+fi
+
+if [ -n "${APPVEYOR_PULL_REQUEST_NUMBER+}" ]; then
+  exit 0
+fi
+
 github-release \
   "${GITHUB_USER}/${GITHUB_REPO}" \
   "${TAG}" \
