@@ -11,10 +11,10 @@ for f in "${INSTALL_DIR}/lib/"*; do
 done
 
 cd "${INSTALL_DIR}"
-7z a "../${INSTALL_DIR}.zip" *
+7z a "../${ZIP_FILE_NAME}.zip" *
 cd ..
 
-sha1sum "${INSTALL_DIR}.zip" >"${INSTALL_DIR}.zip.sha1"
+sha1sum "${ZIP_FILE_NAME}.zip" >"${ZIP_FILE_NAME}.zip.sha1"
 
 sed -e "s/@GROUP@/${GROUP_DOTS}/g" -e "s/@ARTIFACT@/${ARTIFACT}/g" -e "s/@VERSION@/${VERSION}/g" "../fake_pom.xml" >"${POM_FILE}"
 sha1sum "${POM_FILE}" >"${POM_FILE}.sha1"
@@ -39,14 +39,14 @@ github-release \
   "${TAG}" \
   "${COMMIT_ID}" \
   "${DESCRIPTION}" \
-  "${INSTALL_DIR}.zip"
+  "${ZIP_FILE_NAME}.zip"
 
 github-release \
   "${GITHUB_USER}/${GITHUB_REPO}" \
   "${TAG}" \
   "${COMMIT_ID}" \
   "${DESCRIPTION}" \
-  "${INSTALL_DIR}.zip.sha1"
+  "${ZIP_FILE_NAME}.zip.sha1"
 
 # Don't fail if pom cannot be uploaded, as it might already be there.
 

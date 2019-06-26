@@ -41,7 +41,8 @@ install:
   - set "TAG=%GROUP_SLASHES%/%ARTIFACT%/%VERSION%"
   - set "CMAKE_BUILD_TYPE=%Configuration%"
   - set "CLASSIFIER=Windows_x64_%CMAKE_BUILD_TYPE%"
-  - set "INSTALL_DIR=%ARTIFACT%-%VERSION%-%CLASSIFIER%"
+  - set "ZIP_FILE_NAME=%ARTIFACT%-%VERSION%-%CLASSIFIER%"
+  - set "INSTALL_DIR=install"
 
 build_script:
   - '"C:\Program Files\Git\bin\sh.exe" --login 2-build-appveyor.sh'
