@@ -7,11 +7,21 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
+      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="RelWithDebInfo" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
+    - os: linux
+      dist: trusty
+      sudo: required
       env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Debug" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
     - os: linux
       dist: trusty
       sudo: required
       env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Release" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
+    - os: osx
+      osx_image: xcode8.3
+      env: BUILD_PLATFORM="Mac_x64" CMAKE_BUILD_TYPE="RelWithDebInfo"
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
     - os: osx
       osx_image: xcode8.3
       env: BUILD_PLATFORM="Mac_x64" CMAKE_BUILD_TYPE="Debug"
