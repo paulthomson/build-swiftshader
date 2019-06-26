@@ -21,7 +21,7 @@ curl -fsSL -o ninja-win.zip https://github.com/ninja-build/ninja/releases/downlo
 cd ..
 
 
-git clone https://github.com/google/swiftshader.git
+git clone https://swiftshader.googlesource.com/SwiftShader
 cd "${CLONE_DIR}"
 git checkout $(cat ../COMMIT_ID)
 git submodule init
