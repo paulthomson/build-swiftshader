@@ -37,7 +37,7 @@ matrix:
 
 
 install:
-  - export CLONE_DIR="swiftshader"
+  - export CLONE_DIR="SwiftShader"
   - export PATH="/data/bin:$PATH"
   - export CMAKE_GENERATOR="Ninja"
   - export CMAKE_OPTIONS="${CMAKE_OPTIONS} -DWARNINGS_AS_ERRORS=0 -DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF"

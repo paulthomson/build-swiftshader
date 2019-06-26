@@ -22,7 +22,7 @@ environment:
      CMAKE_OPTIONS: "-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_GL32=OFF -DWARNINGS_AS_ERRORS=0"
 
 install:
-  - set "CLONE_DIR=swiftshader"
+  - set "CLONE_DIR=SwiftShader"
   - set "PATH=%APPVEYOR_BUILD_FOLDER%\temp;%PATH%"
   - '"C:\Program Files\Git\bin\sh.exe" --login 1-install-deps-appveyor.sh'
   - refreshenv
