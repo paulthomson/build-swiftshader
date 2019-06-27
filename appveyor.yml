@@ -8,6 +8,7 @@ clone_depth: 5
 skip_tags: true
 
 configuration:
+  - RelWithDebInfo
   - Release
   - Debug
 
@@ -18,10 +19,10 @@ environment:
   matrix:
    - PROFILE: MSVC2015
      CMAKE_GENERATOR: "Ninja"
-     CMAKE_OPTIONS: "-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_GL32=OFF -DBUILD_VULKAN=OFF"
+     CMAKE_OPTIONS: "-DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_GL32=OFF -DWARNINGS_AS_ERRORS=0"
 
 install:
-  - set "CLONE_DIR=swiftshader"
+  - set "CLONE_DIR=SwiftShader"
   - set "PATH=%APPVEYOR_BUILD_FOLDER%\temp;%PATH%"
   - '"C:\Program Files\Git\bin\sh.exe" --login 1-install-deps-appveyor.sh'
   - refreshenv
@@ -40,7 +41,8 @@ install:
   - set "TAG=%GROUP_SLASHES%/%ARTIFACT%/%VERSION%"
   - set "CMAKE_BUILD_TYPE=%Configuration%"
   - set "CLASSIFIER=Windows_x64_%CMAKE_BUILD_TYPE%"
-  - set "INSTALL_DIR=%ARTIFACT%-%VERSION%-%CLASSIFIER%"
+  - set "ZIP_FILE_NAME=%ARTIFACT%-%VERSION%-%CLASSIFIER%"
+  - set "INSTALL_DIR=install"
 
 build_script:
   - '"C:\Program Files\Git\bin\sh.exe" --login 2-build-appveyor.sh'

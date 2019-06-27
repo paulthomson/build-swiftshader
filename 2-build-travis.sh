@@ -18,7 +18,9 @@ cd ..
 
 mkdir -p "${INSTALL_DIR}/lib"
 
-cp "${BUILD_DIR}/libEGL"* "${INSTALL_DIR}/lib/"
-cp "${BUILD_DIR}/libGLES"* "${INSTALL_DIR}/lib/"
+OUTPUT_SYSTEM="$(uname)"
+
+# Copy the contents of the output directory into lib.
+cp -r "${BUILD_DIR}/${OUTPUT_SYSTEM}/." "${INSTALL_DIR}/lib/"
 
 find "${INSTALL_DIR}"

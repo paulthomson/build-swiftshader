@@ -21,6 +21,15 @@ sha1sum "${POM_FILE}" >"${POM_FILE}.sha1"
 
 DESCRIPTION="$(echo -e "Automated build.\n$(git log --graph -n 3 --abbrev-commit --pretty='format:%h - %s <%an>')")"
 
+# Only release from master branch commits.
+if [ "$TRAVIS_BRANCH" != "master" ]; then
+  exit 0
+fi
+
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+  exit 0
+fi
+
 github-release \
   "${GITHUB_USER}/${GITHUB_REPO}" \
   "${TAG}" \
