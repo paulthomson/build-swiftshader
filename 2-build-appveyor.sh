@@ -11,7 +11,8 @@ mkdir -p "${BUILD_DIR}"
 cd "${BUILD_DIR}"
 cmake -G "${CMAKE_GENERATOR}" .. "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" -DCMAKE_OSX_ARCHITECTURES=x86_64 ${CMAKE_OPTIONS}
 cmake --build . --config "${CMAKE_BUILD_TYPE}"
-cmake "-DCMAKE_INSTALL_PREFIX=../${INSTALL_DIR}" "-DBUILD_TYPE=${CMAKE_BUILD_TYPE}" -P cmake_install.cmake
+# SwiftShader doesn't install anything, but third party projects do, so skip the install step.
+# cmake "-DCMAKE_INSTALL_PREFIX=../${INSTALL_DIR}" "-DBUILD_TYPE=${CMAKE_BUILD_TYPE}" -P cmake_install.cmake
 cd ..
 
 # SwiftShader doesn't install anything, so copy files manually.
