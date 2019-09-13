@@ -26,3 +26,9 @@ cd "${CLONE_DIR}"
 git checkout $(cat ../COMMIT_ID)
 git submodule init
 git submodule update
+cd third_party
+rm -rf marl
+git clone https://github.com/ben-clayton/marl.git
+cd marl
+git checkout fix-25
+
