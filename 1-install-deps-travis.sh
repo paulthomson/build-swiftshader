@@ -31,7 +31,7 @@ popd
 
 git clone https://swiftshader.googlesource.com/SwiftShader
 cd "${CLONE_DIR}"
-git checkout $(cat ../COMMIT_ID)
+git fetch "https://swiftshader.googlesource.com/SwiftShader" refs/changes/89/36389/1 && git checkout FETCH_HEAD
 git submodule init
 git submodule update
 

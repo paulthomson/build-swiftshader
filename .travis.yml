@@ -1,0 +1,63 @@
+
+language: generic
+
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="RelWithDebInfo" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
+    - os: linux
+      dist: trusty
+      sudo: required
+      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Debug" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
+    - os: linux
+      dist: trusty
+      sudo: required
+      env: BUILD_PLATFORM="Linux_x64" CMAKE_BUILD_TYPE="Release" CMAKE_OPTIONS="-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--reduce-memory-overheads,--no-keep-memory"
+    - os: osx
+      osx_image: xcode8.3
+      env: BUILD_PLATFORM="Mac_x64" CMAKE_BUILD_TYPE="RelWithDebInfo"
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+    - os: osx
+      osx_image: xcode8.3
+      env: BUILD_PLATFORM="Mac_x64" CMAKE_BUILD_TYPE="Debug"
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+    - os: osx
+      osx_image: xcode8.3
+      env: BUILD_PLATFORM="Mac_x64" CMAKE_BUILD_TYPE="Release"
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+
+
+install:
+  - export CLONE_DIR="SwiftShader"
+  - export PATH="/data/bin:$PATH"
+  - export CMAKE_GENERATOR="Ninja"
+  - export CMAKE_OPTIONS="${CMAKE_OPTIONS} -DWARNINGS_AS_ERRORS=0 -DBUILD_SAMPLES=OFF -DBUILD_TESTS=OFF"
+  - export GITHUB_USER="paulthomson"
+  - export GITHUB_REPO="build-swiftshader"
+  - export COMMIT_ID="${TRAVIS_COMMIT}"
+  - export GROUP_DOTS="github.${GITHUB_USER}"
+  - export GROUP_SLASHES="github/${GITHUB_USER}"
+  - export ARTIFACT="${GITHUB_REPO}"
+  - export VERSION="${COMMIT_ID}"
+  - export POM_FILE="${GITHUB_REPO}-${VERSION}.pom"
+  - export TAG="${GROUP_SLASHES}/${ARTIFACT}/${VERSION}"
+  - export CLASSIFIER="${BUILD_PLATFORM}_${CMAKE_BUILD_TYPE}"
+  - export INSTALL_DIR="${ARTIFACT}-${VERSION}-${CLASSIFIER}"
+  - ./1-install-deps-travis.sh
+
+script:
+  - ./2-build-travis.sh
+
+after_success:
+  - ./3-release-travis.sh
+
+
